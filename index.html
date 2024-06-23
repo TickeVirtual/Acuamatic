@@ -8,7 +8,7 @@
     <style>
       * {
         font-family: tahoma, Helvetica, sans-serif; /* tipo de letra de todo el ticket; */
-        font-size: 3mm !important;
+        font-size: 3.5mm !important;
         line-height: 1 !important;
       }
 
@@ -185,12 +185,9 @@
 
       .m-0 {
         margin: 0 !important;
-
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
         text-align: left;
       }
-
-
-  
 
       .policy {
         font-size: 1.5mm;
@@ -205,22 +202,11 @@
         font-weight: normal; /* Agrega esta línea para desactivar la negrita */
         
       }
-
-
-
-
-
       
       .align-right {
             text-align: right;
         }
 /* ---------------------------------------------------------------------------------------------- */
-
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-      
 
 .button-container {
   display: flex;
@@ -351,14 +337,16 @@ img#impresoraButton {
         <div id="thermal-pos">
         
         <div class="label">
-             <img class="boton" src="Evergreen.png" class="ImganelLogo" width= "60%" id "foto">
+             <img class="boton" src="aqumatic.png" class="ImganelLogo" width= "80%" id "foto">
             <br/>
             <p class="info-tienda">
-                Salaverry 193 , Miraflores
+                ADMINISTRACIÓN Y RENTAS SAC
                 <br>
-                Telefono: 947947119
+              RUC:20482261249
                 <br>
-                Horario de lunes a sábado de 9:00 am a 7:00 pm 
+                Calle Sinchi Roca N° 177 Urbanización Vista Alegre , Victor Larco Herrera, Trujillo , La Libertad - Perú
+                <br>
+                -
         
                 <br>
               
@@ -377,8 +365,8 @@ img#impresoraButton {
                 <b id="fecha"></b>
             <br>
             <b>CLIENTE:<br>
-            <b id="nombre_client"></b>
-          
+            <h1 class="nombre-cliente" id="nombre_client">
+            </h1>
         </div>
 
         <div class="label">
@@ -493,6 +481,7 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
                     <td class="" colspan="3">Total Venta:</td>
                     <td colspan="3"><h2 id="total"></h2></td>
                 </tr>
+
                 <tr class="table-footer">
                     <td colspan="3"><h2>Desc x prenda:</h2></td>
                     <td colspan="3"><h2 id="desc_por_prenda"></h2></td>
@@ -505,32 +494,32 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
                 </tr>
                 
                 <tr class="table-footer">
-                    <td colspan="3"><h2>A cuenta :</h2></td>
+                    <td colspan="3"><h2>A cuenta 1:</h2></td>
                     <td colspan="3"><h2 id="a_cuenta"></h2></td>
                     
                 </tr>
- <tr class="table-footer">
+                    <tr class="table-footer">
                     <td colspan="3"><h2>A cuenta 2:</h2></td>
                     <td colspan="3"><h2 id="a_cuenta_dos"></h2></td>  
              
                 </tr>
                 
                 <tr class="table-footer">
-                    <td colspan="3"><h2>SubTotal:</h2></td>
-                    <td colspan="3"><h2 id="total_a_pagar"></h2></td>
+                    <td colspan="3"><h2>Por Pagar</h2></td>
+                    <td colspan="3"><h2 id="total_por_pagar"></h2></td>
                 </tr>
                 
-           
+                 
                 
                 <tr class="table-footer">
-                    <td colspan="3"><h2 id="porcent_desc"></h2></td>
+                    <td colspan="3"><h2 id=0></h2></td>
                     <td colspan="3"><h2 id="porcent_desc_plata"></h2></td>
 
                 </tr>
                 
                  <tr class="table-footer">
-                    <td colspan="3"><h2>Total por pagar:</h2></td>
-                    <td colspan="3"><h2 id="total_por_pagar"></h2></td>
+                    <td colspan="3"><h2></h2></td>
+                    <td colspan="3"><h2 id="porcent_desc_plata"></h2></td>
                 </tr>
                 
                 
@@ -542,56 +531,23 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
             <b><span class="estado-deuda" id="estado"></span></b>
         </p>
         <br/>
-        <div class="policy">
+       <div class="policy">
             <p class="policy-title">
-                <b>
-                
-                    Gracias por confiar en nosotros10</b>
+                <b>IMPORTANTE_:</b>
+            </p>
+        
+            <p class="m-0">
+               Este ticket es solo un documento de control interno.
+  
+                <br/>
+             
             </p>
     
-        
-
+        <div class="policy">
+            <p class="policy-title">
+                <b>GRACIAS POR SU PREFERENCIA!!</b>
+            </p>
     </div>
-
- <div class="policy-title">
-    <img id="fiestas" src="fiestas.png" alt="FIESTAS" width= "60%" style="display:none;">
-    <img id="navidad" src="navidad.png" alt="NAVIDAD" width= "60%" style="display:none;">
- </div>
-              
-
-    <script>
-        // Obtener la fecha actual
-        const hoy = new Date();
-        const mes = hoy.getMonth() + 1; // Los meses en JavaScript son de 0-11
-        const dia = hoy.getDate();
-
-        // Función para verificar si la fecha está en un rango específico (ignorando el año)
-        function estaEnRango(inicio, fin) {
-            const [inicioDia, inicioMes] = inicio.split('-').map(Number);
-            const [finDia, finMes] = fin.split('-').map(Number);
-
-            const inicioFecha = new Date(hoy.getFullYear(), inicioMes - 1, inicioDia);
-            const finFecha = new Date(hoy.getFullYear(), finMes - 1, finDia);
-
-            const inicioMesDia = new Date(0, inicioMes - 1, inicioDia);
-            const finMesDia = new Date(0, finMes - 1, finDia);
-
-            const hoyMesDia = new Date(0, mes - 1, dia);
-
-            return hoyMesDia >= inicioMesDia && hoyMesDia <= finMesDia;
-        }
-
-        // Mostrar la imagen adecuada según la fecha (ignorando el año)
-        if (estaEnRango('20-06', '30-06')) {
-            document.getElementById('fiestas').style.display = 'block';
-        } else if (estaEnRango('19-06', '19-06')) {
-            document.getElementById('navidad').style.display = 'block';
-        }
-    </script>
-
-              
-              
-              
     <script>
         var nroBoletaElement = document.getElementById("nro_boleta_id").textContent = nro_boleta;
         var fechaElement = document.getElementById("fecha").textContent = fecha;
@@ -599,16 +555,18 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
         var fecha_entregaElement = document.getElementById("fecha_entrega").textContent = fecha_entrega;
         
 
-        var totalElement = document.getElementById("total").textContent = total;
-        var subtotal_descElement = document.getElementById("subtotal_desc").textContent = subtotal_desc;
-        var desc_por_prendaElement = document.getElementById("desc_por_prenda").textContent = desc_por_prenda;
-        var total_a_pagarElement = document.getElementById("total_a_pagar").textContent = total_a_pagar;
-        var a_cuentaElement = document.getElementById("a_cuenta").textContent = a_cuenta;
-        var a_cuenta_dosElement = document.getElementById("a_cuenta_dos").textContent = a_cuenta_dos;
-        
-        var porcent_descElement = document.getElementById("porcent_desc").textContent = porcent_desc;
-        var porcent_desc_plataElement = document.getElementById("porcent_desc_plata").textContent = porcent_desc_plata;
-        var total_por_pagarElement = document.getElementById("total_por_pagar").textContent = total_por_pagar;
+        var totalElement = document.getElementById("total");totalElement.textContent = parseFloat(total).toFixed(2);
+        var subtotal_descElement = document.getElementById("subtotal_desc");subtotal_descElement.textContent = parseFloat(subtotal_desc).toFixed(2);
+        var desc_por_prendaElement = document.getElementById("desc_por_prenda");desc_por_prendaElement.textContent = parseFloat(desc_por_prenda).toFixed(2);
+
+        var a_cuentaElement = document.getElementById("a_cuenta");a_cuentaElement.textContent = parseFloat(a_cuenta).toFixed(2);
+        var a_cuenta_dosElement = document.getElementById("a_cuenta_dos"); a_cuenta_dosElement.textContent = parseFloat(a_cuenta_dos).toFixed(2);
+
+
+        var total_por_pagarElement = document.getElementById("total_por_pagar");total_por_pagarElement.textContent = parseFloat(total_por_pagar).toFixed(2);
+        //var porcent_descElement = document.getElementById("porcent_desc").textContent = porcent_desc;
+        //var porcent_desc_plataElement = document.getElementById("porcent_desc_plata").textContent = porcent_desc_plata;
+           
         
         var estadoElement = document.getElementById("estado").textContent = estado;
       </script>   
