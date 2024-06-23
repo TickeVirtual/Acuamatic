@@ -407,8 +407,8 @@ img#impresoraButton {
     newRow.innerHTML = `
 
         
-       <td class="item" style="text-align: right;">${row.cantidad}</td>
-        <td class="item" style="text-align: right;">${row.descripcion}</td>
+       <td class="item" style="text-align: left;">${row.cantidad}</td>
+        <td class="item" style="text-align: left;">${row.descripcion}</td>
 
         <td class="item" style="text-align: right;">${row.precio_unit}</td> <!-- Alinea a la derecha -->
         <td class="item" style="text-align: right;">${subtotal.toFixed(2)}</td> <!-- Alinea a la derecha -->
@@ -495,7 +495,8 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
         <br/>
        <div class="policy">
             <p class="policy-title">
-                <b>IMPORTANTE_:</b>
+                <b></b>
+            </p>
             </p>
         
             <p class="m-0">
@@ -503,6 +504,7 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
   
                 <br/>
              
+            </p>
             </p>
     
         <div class="policy">
