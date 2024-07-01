@@ -241,7 +241,7 @@ img#impresoraButton {
         var telefono = params.has('telefono') ? params.get('telefono') : "==Cliente==";
         var codigo_pais = params.has('codigo_pais') ? params.get('codigo_pais') : "==Cliente==";
         var fecha = params.has('fecha') ? params.get('fecha') : "dd/mm/aaaa hh:mm:ss";
-        var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : "hh:mm:ss";
+        var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : "-";
         var total = params.has('total') ? params.get('total') : "";
         var subtotal_desc = params.has('subtotal_desc') ? params.get('subtotal_desc') : " ";
         var total_a_pagar = params.has('total_por_pagar') ? params.get('total_por_pagar') : " ";
@@ -331,7 +331,7 @@ img#impresoraButton {
                 <b id="fecha"></b>
             </p>
             <b>CLIENTE:</b>
-            <h1 class="nombre-cliente" id="mesa">
+            <h1> class="nombre-cliente" id="mesa"
             </h1>
         </div>
 
