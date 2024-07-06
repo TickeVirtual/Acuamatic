@@ -264,7 +264,7 @@ img#impresoraButton {
         var codigo_pais = params.has('codigo_pais') ? params.get('codigo_pais') : "==Cliente==";
         var fecha = params.has('fecha') ? params.get('fecha') : "dd/mm/aaaa hh:mm:ss";
         var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : " ";
-        var total = params.has('total') ? params.get('total') : "";
+        var total = params.has('total') ? params.get('total') : " ";
         var subtotal_desc = params.has('subtotal_desc') ? params.get('subtotal_desc') : " ";
         var total_a_pagar = params.has('total_a_pagar') ? params.get('total_a_pagar') : " ";
         var descuento = params.has('descuento') ? params.get('descuento') : " ";
@@ -419,52 +419,7 @@ img#impresoraButton {
         
     </script>
                 
-    <script>
-   
 
-       // Función para generar el enlace de WhatsApp
-        function sendWhatsAppMessage() {
-            // URL del archivo donde se encuentra insertado el botón
-            var currentURL = window.location.href;
-            
-            
-            // Mensaje a enviar junto con el enlace
-            var message = 'Hola!! somos de la lavandería, somos una lavandería que cuida el medio ambiente ♻️♻️♻️♻️♻️, por ello adjuntamos su ticket de atención  virtual. Click en el link para ver el ticket 👇🏻👇🏻👇🏻 ' + currentURL;
-            
-               // Código de país fijo
-            //var countryCode = '+51';
-            
-            
-            
-            // Construir el enlace de WhatsApp
-            var whatsappLink = 'https://api.whatsapp.com/send?phone=' + codigo_pais + telefono + '&text=' + encodeURIComponent(message)+'?sharelink=1';
-            
-            // Abrir una nueva ventana o pestaña para enviar el mensaje por WhatsApp
-            window.open(whatsappLink, '_blank');
-        }
-
-        // Asignar la función al evento click del botón
-        document.getElementById('whatsappButton').addEventListener('click', sendWhatsAppMessage);
-        
-          </script>
-        
-
-
-     
-         <script>
-    
-    // Función para imprimir el ticket
-function printTicket() {
-  window.print();
-}
-
-// Asignar la función al evento click del botón de impresión
-document.getElementById('impresoraButton').addEventListener('click', printTicket);
-     
-     
-        
-        
-    </script>
         <tr class="table-footer top-line">
           <td class="" colspan="3">Total Venta:</td>
           <td colspan="3"><h2 id="total"></h2></td>
