@@ -14,13 +14,13 @@
 
       .info-tienda {
         margin-top: 0;
-        margin-bottom: 1mm;
+        margin-bottom:0mm;
         line-height: 4mm;
       }
 
       .nro_boleta {
         margin: 0;
-        font-size: 4mm !important;
+        font-size: 10mm !important;
       }
 
       .fecha_recepcion {
@@ -32,9 +32,9 @@
       }
 
       .nombre-cliente {
-        margin: 2mm;
+        margin: 0mm;
         margin-top: 0;
-        font-size: 5mm !important;
+        font-size: mm !important;
       }
 
       #thermal-pos {
@@ -48,10 +48,30 @@
       #thermal-pos h2 {
         font-size: 2mm;
         line-height: 13px;
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
       }
       .label {
         margin: 0;
       }
+         .ticket {
+    text-align: center;
+   Padding-top: 0; /* Elimina el margen superior */
+   Padding-bottom: 0; /* Elimina el margen inferior */
+   Padding-right: 0;
+   Padding-left: 0;
+    
+
+    }
+       .fecharecep {
+    text-align: center;
+   Padding-top: 0; /* Elimina el margen superior */
+   Padding-bottom: 0; /* Elimina el margen inferior */
+   Padding-right: 0;
+   Padding-left: 0;
+    
+
+    }
+
       #thermal-pos .label {
         text-align: center;
         font-size: 2mm;
@@ -84,6 +104,7 @@
         font-size: 2.1mm;
         text-align: start;
         word-wrap: break-word;
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
       }
 
       #thermal-pos .cantidad {
@@ -129,9 +150,9 @@
 
       .saldo-text {
         margin: 0;
-        font-size: 3mm;
-        text-align: center;
-      }
+        font-size: 18mm;
+        text-align: left;
+      } 
 
       .table-footer {
         vertical-align: bottom;
@@ -146,7 +167,7 @@
       }
 
       .estado-deuda {
-        font-size: 8mm !important;
+        font-size: 2.7mm !important;
       }
 
       .info {
@@ -164,7 +185,7 @@
 
       .m-0 {
         margin: 0 !important;
-
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
         text-align: left;
       }
 
@@ -178,6 +199,7 @@
       .policy .policy-title {
         text-align: center;
         margin: 0;
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
         
       }
       
@@ -241,13 +263,23 @@ img#impresoraButton {
         var telefono = params.has('telefono') ? params.get('telefono') : "==Cliente==";
         var codigo_pais = params.has('codigo_pais') ? params.get('codigo_pais') : "==Cliente==";
         var fecha = params.has('fecha') ? params.get('fecha') : "dd/mm/aaaa hh:mm:ss";
-        var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : "-";
+        var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : " ";
         var total = params.has('total') ? params.get('total') : "";
         var subtotal_desc = params.has('subtotal_desc') ? params.get('subtotal_desc') : " ";
-        var total_a_pagar = params.has('total_por_pagar') ? params.get('total_por_pagar') : " ";
-        var descuento = params.has('descuento') ? params.get('descuento') : "0.00";
+        var total_a_pagar = params.has('total_a_pagar') ? params.get('total_a_pagar') : " ";
+        var descuento = params.has('descuento') ? params.get('descuento') : " ";
         var a_cuenta = params.has('a_cuenta') ? params.get('a_cuenta') : " ";
-        var estado = params.has('estado') ? params.get('estado') : "--";
+        var desc_por_prenda = params.has('desc_por_prenda') ? params.get('desc_por_prenda') : " ";
+        var pagado_con = params.has('pagado_con') ? params.get('pagado_con') : "--";
+        var a_cuenta_dos = params.has('a_cuenta_dos') ? params.get('a_cuenta_dos') : " ";
+        var pagado_con_dos = params.has('pagado_con_dos') ? params.get('pagado_con_dos') : "--";
+        var porcent_desc = params.has('porcent_desc') ? params.get('porcent_desc') : " ";
+        var porcent_desc_plata = params.has('porcent_desc_plata') ? params.get('porcent_desc_plata') : " ";
+        var total_por_pagar = params.has('total_por_pagar') ? params.get('total_por_pagar') : " ";
+        var estado = params.has('detallespend') ? params.get('detallespend') : "--";
+        
+        
+        
 
         //Recibe los datos de los servicios (separados por comas)
         var cantidades = params.has('cantidades') ? params.get('cantidades') : "";
@@ -288,13 +320,13 @@ img#impresoraButton {
          <div class="button-box">
   <!-- Botón de WhatsApp con ícono -->
   <a href="#" id="impresoraButton">
-   <img class="boton" src="Print.png" class="ImganelLogo" width= "45%" id "foto">
+  <img class="boton" src="Print.png" class="ImganelLogo" width= "60%" id "foto">
   </a>
   
   <!-- Botón existente de WhatsApp -->
   
   <a href="#" id="whatsappButton">
-   <img class="boton" src="wsp.png" class="ImganelLogo" width= "45%" id "foto">
+  <img class="boton" src="wsp.png" class="ImganelLogo" width= "60%" id "foto">
   </a>
     </div>
   </div>
@@ -305,18 +337,18 @@ img#impresoraButton {
         <div id="thermal-pos">
         
         <div class="label">
-             <img class="boton" src="aquamatic.png" class="ImganelLogo" width= "45%" id "foto">
+             <img class="boton" src="Laquamatic.png" class="ImganelLogo" width= "80%" id "foto">
             <br/>
-                <p class="info-tienda">
-                ADMINISTRACIÓN Y RENTAS SAC
+            <p class="info-tienda">
+                Jr Pablo Usandizaga 533
                 <br>
-              RUC:20482261249
-                <br>
-                Calle Sinchi Roca N° 177 Urbanización Vista Alegre , Victor Larco Herrera, Trujillo , La Libertad - Perú
+                Telefono: 942279627 - 01 2251308
                 <br>
                 -
         
                 <br>
+              
+          
         </div>
         
         
@@ -335,25 +367,18 @@ img#impresoraButton {
             </h1>
         </div>
 
-        <div class="label">
-            <p class="fecha_entrega">
-                <b> FECHA ENTREGA: <br>
-                    <span id="fecha_entrega"></span>
-                </b>
-            </p>
-        </div>
       
+   
+   
         <table class="table">
             <tbody id="tablaBody">
                 <tr class="table-header">
     <th><h2>Cant</h2></th>
     <th><h2>Descripcion</h2></th>
-   
+
     <th><h2>Precio</h2></th>
     <th><h2>Subtotal</h2></th> <!-- Nueva columna para Subtotal -->
                  </tr>
-
-               </table>   
                 <script>
                     /*var result = [
                         { cantidad: 3, descripcion: "Descripción 1", precio_unit: 10.50 },
@@ -373,9 +398,9 @@ img#impresoraButton {
     newRow.innerHTML = `
 
         
-       <td class="item" style="text-align: left;">${row.cantidad}</td>
-        <td class="item" style="text-align: left;">${row.descripcion}</td>
-     
+        <td class="item" style="text-align: right;">${row.cantidad}</td>
+        <td class="item" style="text-align: right;">${row.descripcion}</td>
+
         <td class="item" style="text-align: right;">${row.precio_unit}</td> <!-- Alinea a la derecha -->
         <td class="item" style="text-align: right;">${subtotal.toFixed(2)}</td> <!-- Alinea a la derecha -->
     `;
@@ -404,7 +429,7 @@ img#impresoraButton {
             
             
             // Mensaje a enviar junto con el enlace
-            var message = 'Hola!! somos de la lavandería Easy Laundry , somos una lavandería que cuida el medio ambiente ♻️♻️♻️♻️♻️, por ello adjuntamos su ticket de atención  virtual. Click en el link para ver el ticket 👇🏻👇🏻👇🏻 ' + currentURL;
+            var message = 'Hola!! somos de la lavandería, somos una lavandería que cuida el medio ambiente ♻️♻️♻️♻️♻️, por ello adjuntamos su ticket de atención  virtual. Click en el link para ver el ticket 👇🏻👇🏻👇🏻 ' + currentURL;
             
                // Código de país fijo
             //var countryCode = '+51';
@@ -440,61 +465,45 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
         
         
     </script>
-    
-      <table> 
-
-                <tr class="table-footer top-line">
-                    <td class="" colspan="3"><h2>Subtotal:</h2></td>
-                    <td colspan="3"><h2 id="total"></h2></td>
-                </tr>
-                <tr class="table-footer">
-                    <td colspan="3"><h2>Descuento:</h2></td>
-                    <td colspan="3"><h2 id="descuento"></h2></td>
-                    
-                </tr>
-                
-                <tr class="table-footer">
-                    <td colspan="3"><h2>A cuenta:</h2></td>
-                    <td colspan="3"><h2 id="a_cuenta"></h2></td>
-                    
-                </tr>
-                
-                <tr class="table-footer">
-                    <td colspan="3"><h2>Total a pagar:</h2></td>
-                    <td colspan="3"><h2 id="total_a_pagar"></h2></td>
-                </tr>
-                
-               </table>    
-                
-                
-            </tbody>
-               
-     
+        <tr class="table-footer top-line">
+          <td class="" colspan="3">Total Venta:</td>
+          <td colspan="3"><h2 id="total"></h2></td>
+        </tr>
+</tbody>
+    </table>
         <br/>
-        <br/>
+        LAS SIGUIENTES PRENDAS QUEDAN EN REPROCESOO
         <p class="saldo-text">
             <b><span class="estado-deuda" id="estado"></span></b>
         </p>
         <br/>
+      <div class="policy">
+            <p class="policy-title">
+                
+            </p>
+                <p class="saldo-text">
+            <b><span class="estado-deuda" id="estado"></span></b>
+        </p>
+        <br/>
+            
+    
         <div class="policy">
             <p class="policy-title">
-                <b>Este ticket es solo un documento de control interno
-            </b>
+                <b>GRACIAS POR SU PREFERENCIA!!</b>
             </p>
-        
-
     </div>
     <script>
         var nroBoletaElement = document.getElementById("nro_boleta_id").textContent = nro_boleta;
         var fechaElement = document.getElementById("fecha").textContent = fecha;
-        var nombre_clientElement = document.getElementById("mesa").textContent = nombre_cliente;
-        var fecha_entregaElement = document.getElementById("hora").textContent = fecha_entrega;
-        
-
+        var nombre_clientElement = document.getElementById("nombre_client").textContent = nombre_cliente;
+        var fecha_entregaElement = document.getElementById("fecha_entrega").textContent = fecha_entrega;
         var totalElement = document.getElementById("total");totalElement.textContent = parseFloat(total).toFixed(2);
         var subtotal_descElement = document.getElementById("subtotal_desc");subtotal_descElement.textContent = parseFloat(subtotal_desc).toFixed(2);
-        var total_a_pagarElement = document.getElementById("total_a_pagar");total_a_pagarElement.textContent = parseFloat(total_a_pagar).toFixed(2);
+        var desc_por_prendaElement = document.getElementById("desc_por_prenda");desc_por_prendaElement.textContent = parseFloat(desc_por_prenda).toFixed(2);
         var a_cuentaElement = document.getElementById("a_cuenta");a_cuentaElement.textContent = parseFloat(a_cuenta).toFixed(2);
+        var a_cuenta_dosElement = document.getElementById("a_cuenta_dos"); a_cuenta_dosElement.textContent = parseFloat(a_cuenta_dos).toFixed(2);
+        var total_por_pagarElement = document.getElementById("total_por_pagar");total_por_pagarElement.textContent = parseFloat(total_por_pagar).toFixed(2);
+        var porcent_descElement = document.getElementById("porcent_desc").textContent = porcent_desc;
         var estadoElement = document.getElementById("estado").textContent = estado;
       </script>   
 
