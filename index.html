@@ -118,9 +118,13 @@
         <div class="label">
             <img src="Evergreen.png" alt="Laquamatic.png" width="60%">
             <p class="info-tienda">
-                Jr Pablo Usandizaga 533<br>
-                Telefono: 942279627 - 01 2251308<br>
-                Horario de lunes a sábado de 9:00 am a 7:00 pm
+                ADMINISTRACIÓN Y RENTAS SAC<br>
+                RUC: 20482261249<br>
+                Calle Sinchi Roca N° 177 Urbanización<br>
+                Vista Alegre, Víctor Larco Herrera,<br>
+                Trujillo, La Libertad, Perú<br>
+                <br>
+                
             </p>
         </div>
 
@@ -137,14 +141,6 @@
             <b>CLIENTE:<br>
             <span id="nombre_client"></span></b>
         </div>
-
-        <div class="label">
-            <p class="fecha_entrega">
-                <b>FECHA ENTREGA:<br>
-                <span id="fecha_entrega"></span></b>
-            </p>
-        </div>
-
         <table class="table">
             <thead>
                 <tr class="table-header">
@@ -207,7 +203,6 @@
         const telefono = getUrlParam('telefono', '==Cliente==');
         const codigo_pais = getUrlParam('codigo_pais', '==Cliente==');
         const fecha = getUrlParam('fecha', 'dd/mm/aaaa hh:mm:ss');
-        const fecha_entrega = getUrlParam('fecha_entrega', 'hh:mm:ss');
         const total = getUrlParam('total', '');
         const a_cuenta = getUrlParam('a_cuenta', ' ');
         const a_cuenta_dos = getUrlParam('a_cuenta_dos', ' ');
@@ -262,7 +257,6 @@
         setElementContent("nro_boleta_id", nro_boleta);
         setElementContent("fecha", fecha);
         setElementContent("nombre_client", nombre_cliente);
-        setElementContent("fecha_entrega", fecha_entrega);
         setElementContent("total", total);
         setElementContent("a_cuenta", a_cuenta);
         setElementContent("a_cuenta_dos", a_cuenta_dos);
