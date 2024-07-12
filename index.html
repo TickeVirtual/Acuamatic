@@ -78,6 +78,7 @@
             font-size: 1.5mm;
             line-height: 3.5mm;
             padding: 3mm 3mm 0;
+            text-align: center;
         }
         
         .button-container {
@@ -227,8 +228,8 @@
             const newRow = document.createElement("tr");
             newRow.className = "table-item";
             newRow.innerHTML = `
-                <td class="item" style="text-align: right;">${row.cantidad}</td>
-                <td class="item" style="text-align: right;">${row.descripcion}</td>
+                <td class="item" style="text-align: left;">${row.cantidad}</td>
+                <td class="item" style="text-align: left;">${row.descripcion}</td>
                 <td class="item" style="text-align: right;">${row.precio_unit}</td>
                 <td class="item" style="text-align: right;">${row.subtotal}</td>
             `;
@@ -275,7 +276,7 @@
             return hoyMesDia >= inicioMesDia && hoyMesDia <= finMesDia;
         }
 
-        if (estaEnRango('20-06', '30-06')) {
+        if (estaEnRango('11-07', '11-07')) {
             document.getElementById('fiestas').style.display = 'block';
         } else if (estaEnRango('19-06', '19-06')) {
             document.getElementById('navidad').style.display = 'block';
