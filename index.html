@@ -269,7 +269,6 @@ img#impresoraButton {
         var total_a_pagar = params.has('total_a_pagar') ? params.get('total_a_pagar') : " ";
         var descuento = params.has('descuento') ? params.get('descuento') : " ";
         var a_cuenta = params.has('a_cuenta') ? params.get('a_cuenta') : " ";
-        var desc_por_prenda = params.has('desc_por_prenda') ? params.get('desc_por_prenda') : " ";
         var pagado_con = params.has('pagado_con') ? params.get('pagado_con') : "--";
         var a_cuenta_dos = params.has('a_cuenta_dos') ? params.get('a_cuenta_dos') : " ";
         var pagado_con_dos = params.has('pagado_con_dos') ? params.get('pagado_con_dos') : "--";
@@ -549,9 +548,6 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
         
 
         var totalElement = document.getElementById("total");totalElement.textContent = parseFloat(total).toFixed(2);
-        var subtotal_descElement = document.getElementById("subtotal_desc");subtotal_descElement.textContent = parseFloat(subtotal_desc).toFixed(2);
-        var desc_por_prendaElement = document.getElementById("desc_por_prenda");desc_por_prendaElement.textContent = parseFloat(desc_por_prenda).toFixed(2);
-
         var a_cuentaElement = document.getElementById("a_cuenta");a_cuentaElement.textContent = parseFloat(a_cuenta).toFixed(2);
         var a_cuenta_dosElement = document.getElementById("a_cuenta_dos"); a_cuenta_dosElement.textContent = parseFloat(a_cuenta_dos).toFixed(2);
 
