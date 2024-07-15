@@ -228,10 +228,10 @@
             const newRow = document.createElement("tr");
             newRow.className = "table-item";
             newRow.innerHTML = `
-                <td class="item" style="text-align: left;">${row.cantidad}</td>
-                <td class="item" style="text-align: left;">${row.descripcion}</td>
-                <td class="item" style="text-align: right;">${row.precio_unit}</td>
-                <td class="item" style="text-align: right;">${row.subtotal}</td>
+              <td class="item" style="text-align: left; font-weight: normal;">${row.cantidad}</td>
+              <td class="item" style="text-align: left; font-weight: normal;">${row.descripcion}</td>
+              <td class="item" style="text-align: right; font-weight: normal;">${row.precio_unit}</td>
+              <td class="item" style="text-align: right; font-weight: normal;">${row.subtotal}</td>
             `;
             tablaBody.appendChild(newRow);
         });
