@@ -159,8 +159,7 @@
                     <td colspan="3">Total Venta:</td>
                     <td><h2 id="total"></h2></td>
                 </tr>
-
-
+                
                 <tr class="table-footer">
                     <td colspan="3"><h2>A cuenta :</h2></td>
                     <td><h2 id="a_cuenta"></h2></td>
@@ -169,7 +168,14 @@
                     <td colspan="3"><h2>A cuenta 2:</h2></td>
                     <td><h2 id="a_cuenta_dos"></h2></td>
                 </tr>
-
+                <tr class="table-footer">
+                    <td colspan="3"><h2>Descuento:</h2></td>
+                    <td><h2 id="descuento"></h2></td>
+                </tr>                  
+                <tr class="table-footer">
+                    <td colspan="3"><h2>Al entregar:</h2></td>
+                    <td><h2 id="pago_al_entregar"></h2></td>
+                </tr>         
 
                 <tr class="table-footer">
                     <td colspan="3"><h2>Total por pagar:</h2></td>
@@ -206,12 +212,13 @@
         const telefono = getUrlParam('telefono', '==Cliente==');
         const codigo_pais = getUrlParam('codigo_pais', '==Cliente==');
         const fecha = getUrlParam('fecha', 'dd/mm/aaaa hh:mm:ss');
-        const total = getUrlParam('total', '');
-        const a_cuenta = getUrlParam('a_cuenta', ' ');
-        const a_cuenta_dos = getUrlParam('a_cuenta_dos', ' ');
-        const total_por_pagar = getUrlParam('total_por_pagar', ' ');
+        const total = getUrlParam('total', '0.00');
+        const a_cuenta = getUrlParam('a_cuenta', '0.00');
+        const a_cuenta_dos = getUrlParam('a_cuenta_dos', '0.00');
+        const pago_al_entregar = getUrlParam('pago_al_entregar', '0.00');
+        const descuento = getUrlParam('descuento', '0.00');
+        const total_por_pagar = getUrlParam('total_por_pagar', '0.00');
         const estado = getUrlParam('estado', '--');
-
         const cantidades = getUrlParam('cantidades', '').split(',');
         const descripciones = getUrlParam('servicios', '').split(',');
         const detalle = getUrlParam('detalles', '').split(',');
@@ -263,6 +270,8 @@
         setElementContent("total", total);
         setElementContent("a_cuenta", a_cuenta);
         setElementContent("a_cuenta_dos", a_cuenta_dos);
+        setElementContent("pago_al_entregar", pg_al_antregar);
+        setElementContent("descuento", descuento);
         setElementContent("total_por_pagar", total_por_pagar);
         setElementContent("estado", estado);
 
