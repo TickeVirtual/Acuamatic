@@ -273,7 +273,7 @@ img#impresoraButton {
         var a_cuenta_dos = params.has('a_cuenta_dos') ? params.get('a_cuenta_dos') : " ";
         var pagado_con_dos = params.has('pagado_con_dos') ? params.get('pagado_con_dos') : "--";
         var porcent_desc = params.has('porcent_desc') ? params.get('porcent_desc') : " ";
-        var porcent_desc_plata = params.has('porcent_desc_plata') ? params.get('porcent_desc_plata') : " ";
+        var pago_al_entregar = params.has('pago_al_entregar') ? params.get('pago_al_entregar') : " ";
         var total_por_pagar = params.has('total_por_pagar') ? params.get('total_por_pagar') : " ";
         var estado = params.has('estado') ? params.get('estado') : "--";
         
@@ -501,7 +501,7 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
                 
                  <tr class="table-footer">
                     <td colspan="3"><h2>Pago al entregar</h2></td>
-                    <td colspan="3"><h2 id="porcent_desc_plata"></h2></td>
+                    <td colspan="3"><h2 id="pago_al_entregar"></h2></td>
                 </tr>
               
                 <tr class="table-footer">
@@ -552,7 +552,7 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
         var totalElement = document.getElementById("total");totalElement.textContent = parseFloat(total).toFixed(2);
         var a_cuentaElement = document.getElementById("a_cuenta");a_cuentaElement.textContent = parseFloat(a_cuenta).toFixed(2);
         var a_cuenta_dosElement = document.getElementById("a_cuenta_dos"); a_cuenta_dosElement.textContent = parseFloat(a_cuenta_dos).toFixed(2);
-
+        var pago_al_entregarElement = document.getElementById("pago_al_entregar"); pago_al_entregarElement.textContent = parseFloat(pago_al_entregar).toFixed(2);
 
         var total_por_pagarElement = document.getElementById("total_por_pagar");total_por_pagarElement.textContent = parseFloat(total_por_pagar).toFixed(2);
         //var porcent_descElement = document.getElementById("porcent_desc").textContent = porcent_desc;
