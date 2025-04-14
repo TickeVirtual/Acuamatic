@@ -546,8 +546,7 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
         var fechaElement = document.getElementById("fecha").textContent = fecha;
         var nombre_clientElement = document.getElementById("nombre_client").textContent = nombre_cliente;
         var fecha_entregaElement = document.getElementById("fecha_entrega").textContent = fecha_entrega;
-        var fecha_entregadoElement = document.getElementById("fecha_entregado").textContent = fecha_entregado;
-
+        
         var totalElement = document.getElementById("total");totalElement.textContent = parseFloat(total).toFixed(2);
         var a_cuentaElement = document.getElementById("a_cuenta");a_cuentaElement.textContent = parseFloat(a_cuenta).toFixed(2);
         var descuentoElement = document.getElementById("descuento"); descuentoElement.textContent = parseFloat(descuento).toFixed(2);
@@ -559,6 +558,7 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
            
         
         var estadoElement = document.getElementById("estado").textContent = estado;
+        var fecha_entregadoElement = document.getElementById("fecha_entregado").textContent = fecha_entregado;
       </script>   
 
 <script>
