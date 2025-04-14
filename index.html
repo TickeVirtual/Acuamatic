@@ -539,26 +539,26 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
                 <b>GRACIAS POR SU PREFERENCIA!!</b>
             </p>
     </div>
-<div class="label" id="entrega_div">
+<div class="label">
     <p class="fecha_entregado">
-        <b> FECHA ENTREGADO: <br>
+        <b id="bloque_entregado"> FECHA ENTREGADO: <br>
             <span id="fecha_entregado"></span>
         </b>
     </p>
 </div>
 
 <script>
-// Supongamos que aquí tienes la variable que trae la fecha
-let fecha = '';  // <-- tu valor capturado
+// Valor de la fecha que capturas
+let fecha = '';  // por ejemplo, vacío
 
-// Insertar la fecha en el span
 document.getElementById('fecha_entregado').textContent = fecha;
 
-// Si está vacío, ocultamos el div
+// Si está vacío, ocultas todo el <b> que contiene el texto
 if (!fecha) {
-    document.getElementById('entrega_div').style.display = 'none';
+    document.getElementById('bloque_entregado').style.display = 'none';
 }
 </script>
+
 
     <script>
         var nroBoletaElement = document.getElementById("nro_boleta_id").textContent = nro_boleta;
