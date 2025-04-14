@@ -263,7 +263,7 @@ img#impresoraButton {
         var codigo_pais = params.has('codigo_pais') ? params.get('codigo_pais') : "==Cliente==";
         var fecha = params.has('fecha') ? params.get('fecha') : "dd/mm/aaaa hh:mm:ss";
         var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : "hh:mm:ss";
-        var fecha_entregado = params.has('fecha_entregado') ? params.get('fecha_entregado') : "";
+        //var fecha_entregado = params.has('fecha_entregado') ? params.get('fecha_entregado') : "";
         var total = params.has('total') ? params.get('total') : "";
         var subtotal_desc = params.has('subtotal_desc') ? params.get('subtotal_desc') : " ";
         var total_a_pagar = params.has('total_a_pagar') ? params.get('total_a_pagar') : " ";
@@ -540,19 +540,13 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
             </p>
     </div>
 
-         <div class="label">
-            <p class="fecha_entrega">
-                <b> FECHA ESTIMADA ENTREGA: <br>
-                    <span id="fecha_entrega"></span>
-                </b>
-            </p>
-        </div>
+
     <script>
         var nroBoletaElement = document.getElementById("nro_boleta_id").textContent = nro_boleta;
         var fechaElement = document.getElementById("fecha").textContent = fecha;
         var nombre_clientElement = document.getElementById("nombre_client").textContent = nombre_cliente;
         var fecha_entregaElement = document.getElementById("fecha_entrega").textContent = fecha_entrega;
-        var fecha_entregadoElement = document.getElementById("fecha_entregado").textContent = fecha_entregado;
+        //var fecha_entregadoElement = document.getElementById("fecha_entregado").textContent = fecha_entregado;
 
         var totalElement = document.getElementById("total");totalElement.textContent = parseFloat(total).toFixed(2);
         var a_cuentaElement = document.getElementById("a_cuenta");a_cuentaElement.textContent = parseFloat(a_cuenta).toFixed(2);
