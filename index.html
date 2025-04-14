@@ -541,23 +541,25 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
     </div>
 <div class="label">
     <p class="fecha_entregado">
-        <b id="bloque_entregado"> FECHA ENTREGADO: <br>
+        <b id="bloque_entregado">FECHA ENTREGADO: <br>
             <span id="fecha_entregado"></span>
         </b>
     </p>
 </div>
 
 <script>
-// Valor de la fecha que capturas
-let fecha = '';  // por ejemplo, vacío
+// Aquí asignas la fecha que capturas de la URL
+let fecha = '';  // <- si está vacío, se oculta
 
+// Insertar la fecha en el span
 document.getElementById('fecha_entregado').textContent = fecha;
 
-// Si está vacío, ocultas todo el <b> que contiene el texto
-if (!fecha) {
+// Si no hay fecha, ocultar todo el bloque (incluyendo el texto "FECHA ENTREGADO")
+if (!fecha.trim()) {
     document.getElementById('bloque_entregado').style.display = 'none';
 }
 </script>
+
 
 
     <script>
