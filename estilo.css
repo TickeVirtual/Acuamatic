@@ -265,6 +265,27 @@
                     font-size: 30px;
                 }
                 /* ------------------------------------------------------------------------------------------------- */
+                /* -------------------- NUEVO: Estilos para la sección de términos -------------------- */
+                .terms {
+                  font-size: 2mm;         /* ajusta si quieres más/menos tamaño en pantalla */
+                  line-height: 1.2;
+                  padding: 3mm;
+                  border-top: 1px dashed #ccc;
+                  margin-top: 4mm;
+                  text-align: justify;
+                  white-space: pre-wrap;  /* conserva saltos de línea y formato del texto */
+                }
                 
+                /* Ocultar únicamente la sección de términos al imprimir */
+                @media print {
+                  .terms {
+                    display: none !important;
+                  }
+                  /* mantengo tu regla para ocultar botones al imprimir */
+                  #sendMessageButton, #impresoraButton {
+                    display: none !important;
+                  }
+                }
 
                 
+
