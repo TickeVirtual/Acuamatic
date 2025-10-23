@@ -1,411 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket de Compra</title>
-    <link rel="stylesheet" href="estilo.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticket de Compra</title>
+  <link rel="stylesheet" href="estilo.css" />
+</head>
+<body>
 
-  </head>
-
-  <body>
-    <script>
-      // Obtener parámetros de la URL
-      const params = new URLSearchParams(window.location.search);
-
-      // Valores
-      var nro_boleta = params.has('boleta') ? params.get('boleta') : "---";
-      var nombre_cliente = params.has('cliente') ? params.get('cliente') : "==Cliente==";
-      var puntos = params.has('puntos') ? params.get('puntos') : "0";
-      var telefono = params.has('telefono') ? params.get('telefono') : "==Cliente==";
-      var codigo_pais = params.has('codigo_pais') ? params.get('codigo_pais') : "+";
-      var fecha = params.has('fecha') ? params.get('fecha') : "dd/mm/aaaa hh:mm:ss";
-      var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : "hh:mm:ss";
-      var fecha_entregado = params.has('fecha_entregado') ? params.get('fecha_entregado') : " ";
-      var total = params.has('total') ? params.get('total') : "";
-      var total_a_pagar = params.has('total_a_pagar') ? params.get('total_a_pagar') : " ";
-      var descuento = params.has('descuento') ? params.get('descuento') :  '0.00';
-      var a_cuenta = params.has('a_cuenta') ? params.get('a_cuenta') : " ";
-      var desc_por_prenda = params.has('desc_por_prenda') ? params.get('desc_por_prenda') : " ";
-      var pagado_con = params.has('pagado_con') ? params.get('pagado_con') : "--";
-      var a_cuenta_dos = params.has('a_cuenta_dos') ? params.get('a_cuenta_dos') : " ";
-      var pagado_con_dos = params.has('pagado_con_dos') ? params.get('pagado_con_dos') : "--";
-      var porcent_desc = params.has('porcent_desc') ? params.get('porcent_desc') : " ";
-      var porcent_desc_plata = params.has('porcent_desc_plata') ? params.get('porcent_desc_plata') : " ";
-      var total_por_pagar = params.has('total_por_pagar') ? params.get('total_por_pagar') : " ";
-      var estado = params.has('estado') ? params.get('estado') : "--";
-      var total_prendas = params.has('total_prendas') ? params.get('total_prendas') : "--";
-
-      var cantidades = params.has('cantidades') ? params.get('cantidades') : "";
-      var descripciones = params.has('servicios') ? params.get('servicios') : "";
-      var detalle = params.has('detalles') ? params.get('detalles') : "";
-      var p_units = params.has('p_unit') ? params.get('p_unit') : "";
-      var subtotal = params.has('subtotal') ? params.get('subtotal') : "";
-
-      cantidades = cantidades.split(",");
-      descripciones = descripciones.split(",");
-      detalle = detalle.split(",");
-      p_units = p_units.split(",");
-
-      var result = [];
-      cantidades.forEach(function(value, id) {
-        result[id] = {
-          cantidad: cantidades[id],
-          descripcion: descripciones[id],
-          detalle: detalle[id],
-          subtotal: subtotal[id],
-          precio_unit: p_units[id] ? parseFloat(p_units[id]).toFixed(2) : "0.00"
-        };
-      });
-    </script>
-
-    <div id="header">
-      <div class="button-container">
-        <div class="button-box">
-          <!-- Botón imprimir -->
-          <a href="#" id="impresoraButton">
-            <img class="boton" src="Print.png" class="ImganelLogo" width="60%" id="foto">
-          </a>
-
-          <!-- Botón enviar WhatsApp -->
-          <a href="#" id="sendMessageButton">
-            <img class="boton" src="wsp.png" class="ImganelLogo" width="60%" id="foto">
-            <div id="statusMessage"></div>
-          </a>
-        </div>
-      </div>
+  <!-- Botones de impresión y WhatsApp -->
+  <div class="button-container">
+    <div class="button-box">
+      <a href="#" id="impresoraButton">
+        <img class="boton" src="Print.png" width="60%">
+      </a>
+      <a href="#" id="sendMessageButton">
+        <img class="boton" src="wsp.png" width="60%">
+         <div id="statusMessage"></div>
+      </a>
     </div>
+  </div>
 
-    <input type="hidden" id="url" value="">
+  <!-- Campo oculto con la URL -->
+  <input type="hidden" id="url" value="">
 
-    <div id="thermal-pos">
-      <div class="label">
-        <img class="boton" src="logoaquamatic.PNG" class="ImganelLogo" width="60%" id="foto">
-        <br/>
-        <p class="info-tienda">
-          ADMINISTRACIÓN Y RENTAS SAC__<br>
-          RUC: 20482261249<br>
-          Calle Sinchi Roca N° 177 Urbanización<br>
-          Vista Alegre, Víctor Larco Herrera,<br>
-          Trujillo, La Libertad, Perú
-          <br>
-      </div>
-
-      <!-- TICKET -->
+  <!-- Contenedor principal del ticket -->
+  <div id="thermal-pos">
+    <div class="label">
+      <img class="boton" src="logolavandiawspsurco.png" width="80%">
+      <br /><br>
+      <p class="info-tienda">
+        Dirección: Av. Caminos del inca 2313 Surco<br>
+        Horario de atencion:Lunes a Sabado de 9am a 7pm<br>
+        Whatsapp: 972812538
+      </p>
+    </div>
+    <br>
+      <!-- Encabezado del ticket con QR alineado a la derecha -->
       <div class="ticket">
-        <b>TICKET:</b> <br>
+        <b>TICKET</b> <br>
         <h1 class="nro_boleta" id="nro_boleta_id"></h1>
-
+    
         <div class="fecharecep">
-          <p class="fecha">
-            <b>FECHA RECEPCIÓN:</b> <br>
-            <b id="fecha"></b>
-          </p>
+            <p class="fecha">
+                <b>FECHA RECEPCIÓN:</b> <br>
+                <b id="fecha"></b>
+            </p>
         </div>
-
+    
         <b>CLIENTE:</b> <br>
         <h1 class="nombre-cliente" id="nombre_client"></h1>
-
+    
         <b>PUNTOS:</b> <span id="puntos">22</span>
-
+    
         <div class="label">
-          <p class="fecha_entrega">
-            <b>FECHA ENTREGA:</b> <br>
-            <span id="fecha_entrega"></span>
-          </p>
+            <p class="fecha_entrega">
+                <b>FECHA ENTREGA:</b> <br>
+                <span id="fecha_entrega"></span>
+            </p>
         </div>
-      </div>
+    </div>
 
-      <table class="table">
-        <tbody id="tablaBody">
-          <tr class="table-header">
-            <th><h2>Cant</h2></th>
-            <th><h2>Descripcion</h2></th>
-            <th><h2>Precio</h2></th>
-            <th><h2>Subtotal</h2></th>
-          </tr>
+    <!-- Tabla de servicios -->
+    <table class="table">
+      <tbody id="tablaBody">
+        <tr class="table-header">
+          <th><h2>Cant</h2></th>
+          <th><h2>Descripción</h2></th>
+         <!-- <th><h2>Precio</h2></th> -->
+          <th><h2>Subtotal</h2></th>
+        </tr>
+      </tbody>
 
-          <script>
-            function abrirPopup(event, url) {
-              event.preventDefault();
-              window.open(url,'Ticket','width=400,height=600,scrollbars=no,resizable=no,top=100,left=100');
-            }
-          </script>
+      <!-- Totales -->
+      <tr class="table-footer top-line">
+        <td colspan="2">Total Venta:</td>
+        <td><h2 id="total"></h2></td>
+      </tr>
+      <tr class="table-footer">
+        <td colspan="2">Descuento:</td>
+        <td><h2 id="descuento"></h2></td>
+      </tr>
+      <tr class="table-footer">
+        <td colspan="2">Pago#1:</td>
+        <td><h2 id="a_cuenta"></h2></td>
+      </tr>
+      <tr class="table-footer">
+        <td colspan="2">Pago#2:</td>
+        <td><h2 id="a_cuenta_dos"></h2></td>
+      </tr>
+      <tr class="table-footer">
+        <td colspan="2">Por Pagar:</td>
+        <td><h2 id="total_por_pagar"></h2></td>
+      </tr>
+      <tr class="table-footer">
+        <td colspan="2"></td>
+        <td><h2 id="porcent_desc_plata"></h2></td>
+      </tr>
+    </table>
 
-          <script>
-            var tablaBody = document.getElementById("tablaBody");
-            result.forEach(function(row) {
-              var newRow = document.createElement("tr");
-              newRow.className = "table-item";
-              var subtotalCalc = (parseFloat(row.cantidad) || 0) * (parseFloat(row.precio_unit) || 0);
-              newRow.innerHTML = `
-                <td class="item" style="text-align: right;">${row.cantidad}</td>
-                <td class="item" style="text-align: right;">${row.descripcion}</td>
-                <td class="item" style="text-align: right;">${row.precio_unit}</td>
-                <td class="item" style="text-align: right;">${subtotalCalc.toFixed(2)}</td>
-              `;
-              tablaBody.appendChild(newRow);
-            });
+    <!-- Estado de la deuda y total de prendas -->
+    <br />
+    <p class="saldo-text">
+      <b><span class="estado-deuda" id="estado"></span></b>
+    </p>
+    <br />
+    <p class="prendas">
+      <b><span class="total_prendas" id="total_prendas"></span></b>
+    </p>
 
-            document.querySelectorAll('.printbutton').forEach(function(element) {
-              element.addEventListener('click', function() {
-                /*print();*/
-              });
-            });
-          </script>
+    <!-- Mensaje de agradecimiento -->
+    <div class="policy">
 
-          <!-- filas de totales -->
-          <tr class="table-footer top-line">
-            <td class="" colspan="3">Total Venta:</td>
-            <td colspan="3"><h2 id="total"></h2></td>
-          </tr>
+        <b>¡Muchas gracias por su compra!</b>
+    </p>
 
-          <tr class="table-footer">
-            <td colspan="3"><h2>Descuento:</h2></td>
-            <td colspan="3"><h2 id="descuento"></h2></td>
-          </tr>
+    <p class="m-0"> 
+      
 
-          <tr class="table-footer">
-            <td colspan="3"><h2>A cuenta:</h2></td>
-            <td colspan="3"><h2 id="a_cuenta"></h2></td>
-          </tr>
-
-          <tr class="table-footer">
-            <td colspan="3"><h2>Pago al entregar:</h2></td>
-            <td colspan="3"><h2 id="a_cuenta_dos"></h2></td>
-          </tr>
-
-          <tr class="table-footer">
-            <td colspan="3"><h2>Por Pagar</h2></td>
-            <td colspan="3"><h2 id="total_por_pagar"></h2></td>
-          </tr>
-
-        </tbody>
-      </table>
-
-      <br/>
-      <p id="textOutput"> </p>
-      <p class="saldo-text">
-        <b><span class="estado-deuda" id="estado"></span></b>
+      Despues de 90 días de no haber recogido sus prendas se considera abandono y no hay reclamo alguno.
+      
+      Revisar bien sus prendas al recogerlas, ya que no nos hacemos responsables de algún incidente al haber sido retiradas.<br/> <br/>
+    </p>
+   ATENDIDO POR:
+      <b><span class="usuario" id="usuario"></span></b>
+    
       </p>
-      <br/>
-      <p class="prendas:">
-        <b><span class="total_prendas" id="total_prendas"></span></b>
-      </p>
+    </div>
 
-      <div class="policy">
-        <p class="policy-title"><b>GRACIAS POR SU PREFERENCIA:</b></p>
-      </div>
-
-      <div class="label">
-        <p class="fecha_entregado">
-          <b> FECHA ENTREGADO: <br>
-            <span id="fecha_entregado"></span>
-          </b>
-        </p>
-      </div>
-
-      <!-- === NUEVA SECCIÓN: Términos y Condiciones (se muestra en la vista, se oculta en impresión) === -->
-      <div id="terms" class="terms">
-Terminos y Condiciones del Servicio
->>>LAVADO AL PESO || ROPA X KG (Polo, camisa, pantalón, medias, ropa interior, etc ropa de uso diario NO PRENDAS DELICADAS O DE TRATAMIENTO ESPECIAL) <<<
-
-1. El cliente traerá debidamente separadas sus prendas blancas de las de color o las separa, posterior al ser pesadas.
-2. El personal no separa prendas y tampoco verifica el estado de estas (desgastes, encajes, empedrados y demás).
-3. Si en el servicio de lavado de ropa x kg (ropa de uso diario), se detecta otra(s) prenda(s) como sabanas, edredones, etc. Se hará un cobro adicional por dicha prenda. (Aplica a toda prenda que no sea ropa de uso diario).
-4. No nos RESPONSABILIZAMOS por prendas dañadas por causa de objetos olvidados en ellas como; encendedores, lapiceros, llaves, alimentos, golosinas, lápiz labial, etc. (NO A LUGAR RECLAMOS).
-5. No somos RESPONSABLES por prendas manchadas o desmanchadas, estiradas o encogidas, rotas producto de malos tintes o calidad de tela.
-6. El servicio de lavado de ropa por kg, no incluye el lavado a detalle de la(s) prenda(s).
-7. No aceptamos: TRAJES DE GALA, VESTIDOS DE SEDA Y LANA, CHALECOS, ESMOQUIN, CALZADO EN GENERAL, MOCHILAS, DISFRACES Y NINGUNA PRENDA QUE SEA LAVADA AL SECO O VAPOR
-
-*ENTREGA ROPA DE USO DIARIO
-(AL PESO – X KG)
-===>>> 24 HORAS DESPUES
-*ENTREGA DE PRENDAS UNITARIAS
-(Edredones, sabanas, etc)
-====>>> 48 HORAS DESPUES
-      </div>
-      <!-- === FIN TÉRMINOS === -->
-
-      <script>
-        // Rellenar campos del ticket
-        document.getElementById("nro_boleta_id").textContent = nro_boleta;
-        document.getElementById("fecha").textContent = fecha;
-        document.getElementById("nombre_client").textContent = nombre_cliente;
-        document.getElementById("puntos").textContent = puntos;
-        document.getElementById("fecha_entrega").textContent = fecha_entrega;
-        document.getElementById("total").textContent = total ? parseFloat(total).toFixed(2) : "0.00";
-        document.getElementById("descuento").textContent = descuento ? parseFloat(descuento).toFixed(2) : "0.00";
-        document.getElementById("a_cuenta").textContent = a_cuenta ? parseFloat(a_cuenta).toFixed(2) : "0.00";
-        document.getElementById("a_cuenta_dos").textContent = a_cuenta_dos ? parseFloat(a_cuenta_dos).toFixed(2) : "0.00";
-        document.getElementById("total_por_pagar").textContent = total_por_pagar ? parseFloat(total_por_pagar).toFixed(2) : (total ? parseFloat(total).toFixed(2) : "0.00");
-        document.getElementById("estado").textContent = estado;
-        document.getElementById("total_prendas").textContent = total_prendas;
-        document.getElementById("fecha_entregado").textContent = fecha_entregado;
-      </script>
-
-      <script>
-        // Ocultar botones si la URL contiene "sharelink=1"
-        var sendMessageButton = document.getElementById('sendMessageButton');
-        var impresoraButton = document.getElementById('impresoraButton');
-        var currentURL = window.location.href;
-
-        if (currentURL.indexOf('sharelink=1') !== -1) {
-          if (sendMessageButton) sendMessageButton.style.display = 'none';
-          if (impresoraButton) impresoraButton.style.display = 'none';
-        }
-
-        console.log(`Teléfono obtenido: ${telefono}`);
-      </script>
-
-      <!-- ================== Envío WhatsApp con inclusión de Términos ================== -->
-      <script>
-        // Función para acortar la URL (tinyurl)
-        async function shortURL(url) {
-          const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
-          if (response.ok) {
-            return await response.text();
-          } else {
-            throw new Error("Error al acortar la URL");
-          }
-        }
-
-        // Mensajes predefinidos (los usas para variar el texto)
-        const mensajes = [
-          "Hola! Enviamos su ticket de atención: {link}",
-          "Saludos! adjuntamos su ticket de atención: {link}",
-          "Estimado usuario!! , adjuntamos su ticket: {link}",
-          "Buen día! enviamos su nota de atenciión: {link}",
-          "Estimado cliente, su ticket está disponible en el siguiente link: {link}",
-          "Hola! en el siguiente lin podra visualizar su ticket de venta: {link}",
-          "Saludos! para verificar su ticket, clik en el siguiente link: {link}",
-          "Hola, adjuntamos el ticket de atención por el sevicio: {link}",
-          "Estimado usuario , en el siguiente link podra encontrar su ticket: {link}",
-          "Hola! para revisar el detalle de su ticket , clik en el siguiente link: {link}"
-        ];
-
-        // ====== NUEVO: texto plano de los términos para enviar por WhatsApp ======
-        const termsText = `Términos y Condiciones del Servicio:
-LAVADO AL PESO || ROPA X KG (Polo, camisa, pantalón, medias, ropa interior, etc ropa de uso diario NO PRENDAS DELICADAS O DE TRATAMIENTO ESPECIAL)
-
-1. El cliente traerá debidamente separadas sus prendas blancas de las de color o las separa, posterior al ser pesadas.
-2. El personal no separa prendas y tampoco verifica el estado de estas (desgastes, encajes, empedrados y demás).
-3. Si en el servicio de lavado de ropa x kg (ropa de uso diario), se detecta otra(s) prenda(s) como sabanas, edredones, etc. Se hará un cobro adicional por dicha prenda. (Aplica a toda prenda que no sea ropa de uso diario).
-4. No nos RESPONSABILIZAMOS por prendas dañadas por causa de objetos olvidados en ellas como; encendedores, lapiceros, llaves, alimentos, golosinas, lápiz labial, etc. (NO A LUGAR RECLAMOS).
-5. No somos RESPONSABLES por prendas manchadas o desmanchadas, estiradas o encogidas, rotas producto de malos tintes o calidad de tela.
-6. El servicio de lavado de ropa por kg, no incluye el lavado a detalle de la(s) prenda(s).
-7. No aceptamos: TRAJES DE GALA, VESTIDOS DE SEDA Y LANA, CHALECOS, ESMOQUIN, CALZADO EN GENERAL, MOCHILAS, DISFRACES Y NINGUNA PRENDA QUE SEA LAVADA AL SECO O VAPOR
-
-ENTREGA ROPA DE USO DIARIO (AL PESO – X KG): 24 HORAS DESPUES
-ENTREGA DE PRENDAS UNITARIAS (Edredones, sabanas, etc): 48 HORAS DESPUES
-        `;
-
-        // Evento click del botón (envío por Evolution API)
-        document.getElementById('sendMessageButton').addEventListener('click', async function () {
-          const statusMessage = document.getElementById('statusMessage');
-          const sendMessageButton = document.getElementById('sendMessageButton');
-          const whatsappButton = document.getElementById('whatsappButton'); // puede no existir en tu DOM, ok
-
-          // Mostrar mensaje de carga
-          if (statusMessage) {
-            statusMessage.style.display = 'block';
-            statusMessage.textContent = 'Enviando mensaje...';
-            statusMessage.className = 'loading';
-          }
-
-          if (sendMessageButton) sendMessageButton.disabled = true;
-
-          const url = "https://mensajero-evolution-api.ykf6ye.easypanel.host/message/sendMedia/aquamaticinstancia";
-          const apikey = "B0E8139ABD81-4EC9-8FBC-D81A547FFF68";
-          const numeroTelefono = `+51${telefono}`;
-          const longURL = window.location.href;
-
-          try {
-            // Acortar la URL
-            const shortedURL = await shortURL(longURL);
-
-            // index de mensaje aleatorio determinístico por tiempo
-            const ahora = new Date();
-            const hora = ahora.getHours();
-            const minuto = ahora.getMinutes();
-            const segundo = ahora.getSeconds();
-            const index = (hora + minuto + segundo) % mensajes.length;
-
-            // Construir caption: mensaje + link + términos (texto plano)
-            // IMPORTANTE: mantenemos el link acortado dentro del mensaje y luego append de los términos
-            const captionMessage = `*AQUAMATIC*\n\n${mensajes[index].replace("{link}", shortedURL)}\n\n${termsText}`;
-
-            const body = {
-              "number": numeroTelefono,
-              "mediatype": "image",
-              "mimetype": "image/png",
-              "caption": captionMessage,
-              "media": "https://iili.io/3wDiY41.png",
-              "fileName": "Imagem.png",
-              "delay": 1200,
-              "quoted": {
-                "key": { "id": "MESSAGE_ID" },
-                "message": { "conversation": "CONTENT_MESSAGE" }
-              },
-              "mentionsEveryOne": false,
-              "mentioned": ["51931200418"]
-            };
-
-            const response = await fetch(url, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'apikey': apikey
-              },
-              body: JSON.stringify(body)
-            });
-
-            const responseData = await response.json();
-
-            if (response.ok) {
-              // Éxito
-              setTimeout(() => {
-                if (statusMessage) {
-                  statusMessage.textContent = '¡Envío exitoso!';
-                  statusMessage.className = 'success';
-                }
-                if (whatsappButton) {
-                  whatsappButton.disabled = true;
-                  whatsappButton.style.opacity = "0.5";
-                  whatsappButton.style.cursor = "not-allowed";
-                }
-              }, 3000);
-            } else {
-              console.error('Error en la respuesta:', responseData);
-              if (statusMessage) {
-                statusMessage.textContent = `Error: ${responseData.message || 'Problema desconocido'}`;
-                statusMessage.className = 'error';
-              }
-              if (sendMessageButton) sendMessageButton.disabled = false;
-            }
-          } catch (error) {
-            console.error('Error en la solicitud:', error);
-            if (statusMessage) {
-              statusMessage.textContent = `Error en la solicitud: ${error.message}`;
-              statusMessage.className = 'error';
-            }
-            if (sendMessageButton) sendMessageButton.disabled = false;
-          }
-        });
-      </script>
-
-      <script>
-        // Imprimir ticket
-        function printTicket() {
-          window.print();
-        }
-        if (document.getElementById('impresoraButton')) {
-          document.getElementById('impresoraButton').addEventListener('click', printTicket);
-        }
-      </script>
-
-    </div> <!-- fin thermal-pos -->
-  </body>
+    <!-- Mensaje de estado -->
+   
+  </div>
+   <!-- Libreria para el QR -->
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <!-- Enlace al archivo JavaScript -->
+  <script src="script.js"></script>
+</body>
 </html>
-
