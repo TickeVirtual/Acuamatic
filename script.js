@@ -64,17 +64,18 @@
                           var newRow = document.createElement("tr");
                               newRow.className = "table-item";
                                       // Calcula el subtotal para el servicio actual
-                          var subtotal = row.cantidad * parseFloat(row.precio_unit);
+                          var subtotalCalculado = row.cantidad * parseFloat(row.precio_unit);
+                          var subtotal = redondearPersonalizado(subtotalCalculado);
                               newRow.innerHTML = `
-                                <td class="itemtab" style="text-align: left; font-size: 5px;">
+                                <td class="itemtab" style="text-align: left; font-size: 0.5mm;">
                                 ${row.cantidad}
                                 </td>
-                                <td class="itemtab" style="text-align: right; font-size: 5px;">
+                                <td class="itemtab" style="text-align: right; font-size: 0.5mm;">
                                 ${row.descripcion} ${parseFloat(row.precio_unit).toFixed(2)}
                                 </td>
-                                <td class="itemtab" style="text-align: right; font-size: 10px;">
-                                ${subtotal.toFixed(2)}
-                                </td>
+                                <td class="itemtab" style="text-align: right; font-size: 0.5mm;">
+                                ${subtotal}
+                                </td>                             
 
                             `;
 
@@ -89,39 +90,56 @@
 
 
                        /*(INICIA EL CODIGO DE ACORTAR URL) */
-      
-                        // Función para acortar la URL
-                        async function shortURL(url) {
-                            const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
-                            if (response.ok) {
-                                return await response.text();
-                            } else {
-                                throw new Error("Error al acortar la URL");
-                            }
-                        }
-
-                        // Modificamos la función para enviar el mensaje de WhatsApp
-                        async function sendWhatsAppMessage() {
-                            var currentURL = window.location.href;
-                            
-                            try {
-                                // Acortamos la URL actual
-                                var shortedURL = await shortURL(currentURL);
-                                
-                                var message = 'Hola!! somos de la lavandería ,  adjuntamos su ticket de atención virtual. Click en el link para ver el ticket 👇 ' +     
-                                shortedURL;
-                                
-                                var whatsappLink = 'https://api.whatsapp.com/send?phone=' + codigo_pais + telefono + '&text=' + encodeURIComponent(message)+'?sharelink=1';
-                                
-                                window.open(whatsappLink, '_blank');
-                            } catch (error) {
-                                console.error("Error al acortar la URL:", error);
-                                alert("Hubo un error al acortar la URL. Por favor, intente nuevamente.");
-                            }
-                        }
-
-                        // Asignamos la nueva función al evento click del botón
-                        //document.getElementById('whatsappButton').addEventListener('click', sendWhatsAppMessage);
+                           /* (INICIA EL CODIGO DE ACORTAR URL PERSONALIZADO) */
+                           
+                           // Función para acortar URL usando tu propio servidor
+                           async function shortURL(urlLarga) {
+                           try {
+                           const formData = new FormData();
+                           formData.append("url", urlLarga);
+                           
+                           const response = await fetch("https://miticket.sysventa.com/acortar.php", {
+                           method: "POST",
+                           body: formData
+                           });
+                           
+                           const texto = await response.text();
+                           console.log("Respuesta del servidor:", texto);
+                           
+                           if (!response.ok) throw new Error("Error HTTP: " + response.status);
+                           
+                           return texto.trim(); // <- devuelve el link corto limpio
+                           } catch (error) {
+                           console.error("Error en la solicitud:", error);
+                           throw error;
+                           }
+                           }
+                           
+                           
+                           // Enviar mensaje de WhatsApp usando la URL corta
+                           async function sendWhatsAppMessage() {
+                           var currentURL = window.location.href;
+                           
+                           try {
+                           // 1️⃣ Acortamos la URL actual
+                           var shortedURL = await shortURL(currentURL);
+                           
+                           // 2️⃣ Armamos el mensaje
+                           var message = `Hola!! somos de la lavandería, adjuntamos su ticket de atención virtual 👇\n${shortedURL}`;
+                           
+                           // 3️⃣ Creamos el enlace de WhatsApp
+                           var whatsappLink = 'https://api.whatsapp.com/send?phone=' + codigo_pais + telefono + '&text=' + encodeURIComponent(message) + '&sharelink=1';
+                           
+                           // 4️⃣ Abrimos WhatsApp
+                           window.open(whatsappLink, '_blank');
+                           } catch (error) {
+                           console.error("Error al acortar la URL:", error);
+                           alert("Hubo un error al acortar la URL. Por favor, intente nuevamente.");
+                           }
+                           }
+                           
+                           /* FINALIZA EL CODIGO DE ACORTAR URL PERSONALIZADO */
+ 
 
                         /* FINALIZA EL CODIGO DE ACORTAR URL */
 
@@ -166,43 +184,59 @@
                       }
 
     // Función para acortar la URL
-    async function shortURL(url) {
-        const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
-        if (response.ok) {
-            return await response.text();
-        } else {
-            throw new Error("Error al acortar la URL");
-        }
-    }
+ // Función para acortar URL usando tu propio servidor
+async function shortURL(urlLarga) {
+try {
+const formData = new FormData();
+formData.append('url', urlLarga);
 
-    // Lista de mensajes predefinidos
-   const mensajes = [
-        "Hola! Enviamos su ticket de atención: {link}",
-        "Saludos! adjuntamos su ticket de atención: {link}",
-        "Estimado usuario!! , adjuntamos su ticket: {link}",
-        "Buen día! enviamos su nota de atenciión: {link}",
-        "Estimado cliente, su ticket está disponible en el siguiente link: {link}",
-        "Hola! en el siguiente lin podra visualizar su ticket de venta: {link}",
-        "Saludos! para verificar su ticket, clik en el siguiente link: {link}",
-        "Hola, adjuntamos el ticket de atención por el sevicio: {link}",
-        "Estimado usuario , en el siguiente link podra encontrar su ticket: {link}",
-        "Hola! para revisar el detalle de su ticket , clik en el siguiente link: {link}"
-    ];
+const response = await fetch('https://miticket.sysventa.com/acortar.php', {
+method: 'POST',
+body: formData
+});
 
-    document.getElementById('sendMessageButton').addEventListener('click', async function () {
-        const statusMessage = document.getElementById('statusMessage');
-        const sendMessageButton = document.getElementById('sendMessageButton');
-        const whatsappButton = document.getElementById('whatsappButton');
+if (!response.ok) {
+throw new Error("Error al conectar con el servidor del acortador");
+}
 
-        // Mostrar mensaje de carga
-        statusMessage.style.display = 'block';
-        statusMessage.textContent = 'Enviando mensaje...';
-        statusMessage.className = 'loading';
+// La respuesta ya es texto plano (el link corto)
+const shortedURL = (await response.text()).trim();
+return shortedURL;
 
-        sendMessageButton.disabled = true; // Deshabilitar botón mientras se envía
+} catch (error) {
+console.error("Error al acortar la URL:", error);
+throw error;
+}
+}
 
-        const url = "https://mensajero-evolution-api.ykf6ye.easypanel.host/message/sendMedia/botinstancia"; // Cambia NOMBRE_INSTANCIA
-        const apikey = "9E3F31BC6102-4E56-BA66-2B3F3637A9D7"; // Coloca aquí tu API key
+// Lista de mensajes predefinidos
+const mensajes = [
+"Hola! Enviamos su ticket de atención: {link}",
+"Saludos! adjuntamos su ticket de atención: {link}",
+"Estimado usuario!! , adjuntamos su ticket: {link}",
+"Buen día! enviamos su nota de atenciión: {link}",
+"Estimado cliente, su ticket está disponible en el siguiente link: {link}",
+"Hola! en el siguiente lin podra visualizar su ticket de venta: {link}",
+"Saludos! para verificar su ticket, clik en el siguiente link: {link}",
+"Hola, adjuntamos el ticket de atención por el sevicio: {link}",
+"Estimado usuario , en el siguiente link podra encontrar su ticket: {link}",
+"Hola! para revisar el detalle de su ticket , clik en el siguiente link: {link}"
+];
+
+document.getElementById('sendMessageButton').addEventListener('click', async function () {
+const statusMessage = document.getElementById('statusMessage');
+const sendMessageButton = document.getElementById('sendMessageButton');
+const whatsappButton = document.getElementById('whatsappButton');
+
+// Mostrar mensaje de carga
+statusMessage.style.display = 'block';
+statusMessage.textContent = 'Enviando Whatsapp...';
+statusMessage.className = 'loading';
+
+sendMessageButton.disabled = true; // Deshabilitar botón mientras se envía
+
+        const url = "https://mensajero-evolution-api.ykf6ye.easypanel.host/message/sendMedia/aquamaticinstancia"; // Cambia NOMBRE_INSTANCIA
+        const apikey = "B0E8139ABD81-4EC9-8FBC-D81A547FFF68"; // Coloca aquí tu API key
         const numeroTelefono = `+51${telefono}`; // Coloca el número de teléfono del destinatario
         const longURL = window.location.href; // Obtiene la URL actual
 
@@ -227,7 +261,7 @@
                       "mediatype": "image",
                       "mimetype": "image/png",
                       "caption":captionMessage,
-                      "media": "https://iili.io/F9jn26P.png",
+                      "media": "https://iili.io/3wDiY41.png",
                       "fileName": "Imagem.png",
                       "delay": 1200,
                       "quoted": {
@@ -263,7 +297,7 @@
                 }, 3000);
             } else {
                 console.error('Error en la respuesta:', responseData);
-                statusMessage.textContent = `Error: ${responseData.message || 'Problema desconocido'}`;
+                statusMessage.textContent = `Error: ${responseData.message || 'Parece que el whatsapp no existe'}`;
                 statusMessage.className = 'error';
                 sendMessageButton.disabled = false;
             }
@@ -289,16 +323,31 @@
 
      
                           
-                          // Generar código QR desde parámetro 'qr'
-                          document.addEventListener("DOMContentLoaded", function () {
-                            const params = new URLSearchParams(window.location.search);
-                            const qr = params.has('qr') ? params.get('qr') : "sddsd12";
-                          
-                            const qrElement = new QRious({
-                              element: document.getElementById('qr-code'),
-                              value: qr,
-                              size: 100
-                            });
-                          });
+     // Generar código QR desde parámetro 'qr'
+     document.addEventListener("DOMContentLoaded", function () {
+       const params = new URLSearchParams(window.location.search);
+       const qr = params.has('qr') ? params.get('qr') : "sddsd12";
+     
+       const qrElement = new QRious({
+         element: document.getElementById('qr-code'),
+         value: qr,
+         size: 100
+       });
+     });
+// Redondear a la décima más cercana (múltiplos de 0.10)
+function redondearPersonalizado(valor) {
+    let entero = Math.floor(valor); 
+    let decimales = valor - entero;
+
+    // Redondear a la décima más cercana (múltiplos de 0.10)
+    let decima = Math.round(decimales * 10) / 10;
+
+    let resultado = entero + decima;
+    return resultado.toFixed(2);
+}
+
 
                         
+
+
+
