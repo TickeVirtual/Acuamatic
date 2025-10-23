@@ -235,8 +235,8 @@ statusMessage.className = 'loading';
 
 sendMessageButton.disabled = true; // Deshabilitar botón mientras se envía
 
-        const url = "https://mensajero-evolution-api.ykf6ye.easypanel.host/message/sendMedia/lavandiasurcoinstancia"; // Cambia NOMBRE_INSTANCIA
-        const apikey = "63F783149485-491F-A852-0EAE47DE2920"; // Coloca aquí tu API key
+        const url = "https://mensajero-evolution-api.ykf6ye.easypanel.host/message/sendMedia/aquamaticinstancia"; // Cambia NOMBRE_INSTANCIA
+        const apikey = "B0E8139ABD81-4EC9-8FBC-D81A547FFF68"; // Coloca aquí tu API key
         const numeroTelefono = `+51${telefono}`; // Coloca el número de teléfono del destinatario
         const longURL = window.location.href; // Obtiene la URL actual
 
@@ -261,7 +261,7 @@ sendMessageButton.disabled = true; // Deshabilitar botón mientras se envía
                       "mediatype": "image",
                       "mimetype": "image/png",
                       "caption":captionMessage,
-                      "media": "https://iili.io/F9jn26P.png",
+                      "media": "https://iili.io/3wDiY41.png",
                       "fileName": "Imagem.png",
                       "delay": 1200,
                       "quoted": {
@@ -348,6 +348,7 @@ function redondearPersonalizado(valor) {
 
 
                         
+
 
 
 
