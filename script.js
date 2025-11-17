@@ -147,7 +147,7 @@ document.getElementById('sendMessageButton').addEventListener('click', async fun
   }
   if (sendMessageButton) sendMessageButton.disabled = true;
 
-  const url = "https://mensajero-evolution-api.ykf6ye.easypanel.host/message/sendMedia/aquamaticinstancia";
+  const url = "https://mensajero-evolution-api.ykf6ye.easypanel.host/message/sendMedia/acuamaticinstancia";
   const apikey = "3CB27EF6696B-40C1-8AF8-A227EFD74AB8";
   const numeroTelefono = `+51${telefono}`;
   const longURL = window.location.href;
